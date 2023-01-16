@@ -1,0 +1,38 @@
+.CancelContainer {
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 60%;
+    height: 100%;
+}
+
+.CancelContainer>h1 {
+    font-family: "Spoof";
+    font-size: 6em;
+    font-weight: 100;
+    border: 1px solid black;
+    margin-bottom: 0.6em;
+
+}
+
+.CancelContainer>form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid black;
+    width: 60%;
+    margin-top: 0;
+}
+
+.Select {
+    margin-bottom: 2em;
+    width: 35em;
+}
+
+.SubmitBttn.MuiButton-root {
+    background-color: #ff7864;
+    color: white;
+    font-family: "Open sans";
+    text-transform: capitalize;
+}
