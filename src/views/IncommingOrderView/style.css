@@ -7,6 +7,12 @@
 .MainContainer {
     background-color: #ff7864;
     color: white;
+    width: 100vw;
+    height: 100vh;
+    top: 0;
+    position: fixed;
+    cursor: pointer;
+    z-index: auto
 }
 
 .Order {

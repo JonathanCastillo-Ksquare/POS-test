@@ -1,13 +1,14 @@
 import React from 'react'
-import BackBttn from '../../components/BackBttn';
-import { useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react'
 import './styles.css'
+import { useParams } from 'react-router-dom';
+import BackBttn from '../../components/BackBttn';
 import OrderInfoContainer from '../../components/OrderInfoContainer';
 import CancelBttn from '../../components/CancelBttn';
 import PickUpBttn from '../../components/PickUpBttn';
-import { useState, useEffect } from 'react'
 import DeliveredBttn from '../../components/DeliveredBttn';
 
+import IncommingOrderView from '../IncommingOrderView';
 
 export const OrderView = () => {
     const obj = useParams();
@@ -16,9 +17,10 @@ export const OrderView = () => {
     let disabledState = false;
     let disabledCancelState = false;
 
-    const [isReadyForPickUp, setIsReadyForPickUp] = useState(false);
-    const [isDelivered, setIsDelivered] = useState(false);
-    const [isQRScanned, setIsQRScanned] = useState(true);
+    const [isReadyForPickUp, setIsReadyForPickUp] = useState<boolean>(false);
+    const [isDelivered, setIsDelivered] = useState<boolean>(false);
+    const [isQRScanned, setIsQRScanned] = useState<boolean>(true);
+    const [isIncommingOrder, setIsIncommingOrder] = useState<boolean>(true);
 
     const handleOnBack = () => {
         console.log("back!")
@@ -36,6 +38,10 @@ export const OrderView = () => {
         console.log("Ready for pick up", isReadyForPickUp);
         console.log("Delivered", isDelivered);
         setIsDelivered(true)
+    }
+
+    const handleOnNewOrderClick = () => {
+        setIsIncommingOrder(false)
     }
 
 
@@ -61,25 +67,29 @@ export const OrderView = () => {
     }
 
     return (
-        <div className='body'>
-            <header className='header'>
-                <div className='BkbttnContainer'><BackBttn handleOnClick={handleOnBack} /></div>
-                <div className='OrderTitleContainer'>
-                    <h1>Order #{obj.orderId}</h1>
-                </div>
-            </header>
-            <main className='main'>
-                <OrderInfoContainer orderId={orderID} />
-            </main>
+        <>
+            <div className='body'>
+                <header className='header'>
+                    <div className='BkbttnContainer'><BackBttn handleOnClick={handleOnBack} /></div>
+                    <div className='OrderTitleContainer'>
+                        <h1>Order #{obj.orderId}</h1>
+                    </div>
+                </header>
+                <main className='main'>
+                    <OrderInfoContainer orderId={orderID} />
+                </main>
 
-            <footer className='footer'>
-                <div className='ButtonsContainer'>
-                    <CancelBttn isDisabled={disabledCancelState} handleOnClick={handleOnCancel} />
-                    {button}
-                </div>
+                <footer className='footer'>
+                    <div className='ButtonsContainer'>
+                        <CancelBttn isDisabled={disabledCancelState} handleOnClick={handleOnCancel} />
+                        {button}
+                    </div>
 
-            </footer>
-        </div>
+                </footer>
+                <IncommingOrderView state={isIncommingOrder} handleOnClick={handleOnNewOrderClick} />
+            </div>
+
+        </>
     )
 }
 

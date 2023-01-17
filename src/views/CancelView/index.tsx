@@ -29,9 +29,13 @@ export const CancelView = () => {
         selectedOption: null
     });
 
+
+
     const handleOnBack = () => {
-        console.log("back!")
+        console.log("back!");
+
     }
+
 
     return (
         <div className='body'>
@@ -60,7 +64,7 @@ export const CancelView = () => {
                                 />
                             )}
                         />
-                        {/* <Button onSubmit={ } className='SubmitBttn'> Send </Button> */}
+                        <Button type='submit' className='SubmitBttn'> Send </Button>
                     </form>
                 </div>
             </main>

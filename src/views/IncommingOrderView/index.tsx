@@ -2,18 +2,29 @@ import React from 'react'
 import Timer from '../../components/Timer';
 import './style.css'
 
-export const IncommingOrderView = () => {
+type Props = {
+    state: boolean;
+    handleOnClick: VoidFunction;
+
+}
+
+export const IncommingOrderView = ({ state, handleOnClick }: Props) => {
     return (
-        <div className='MainContainer'>
-            <p className='Order'>
-                Accept Order
-            </p>
-            <div className='TimerContainer'>
-                <Timer />
+        <>
+            {state &&
+                <div className='MainContainer' onClick={handleOnClick}>
+                    <p className='Order'>
+                        Accept Order
+                    </p>
+                    <div className='TimerContainer'>
+                        <Timer />
 
-            </div>
+                    </div>
 
-        </div>
+                </div>
+
+            }
+        </>
     )
 }
 
